@@ -76,7 +76,7 @@ module SN
 
       url = "#{SN.Settings.base_url}/v2/documents/#{params[:document_id]}/embedded-invites/#{params[:id]}/link"
       begin
-        response = RestClient.post(url, { auth_method: 'none' }.to_json, headers)
+        response = RestClient.post(url, { auth_method: 'none', link_expiration: nil }.to_json, headers)
         JSON.parse(response.body, object_class: OpenStruct).data.link
       rescue Exception => e
         puts e.inspect
