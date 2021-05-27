@@ -64,19 +64,20 @@ module SN
     # @option params [String] :password the invitee's password
     # @option params [String] :id the ID of the document in the signing session
     # @return [String] a URL to the signing session
-    def generate_signing_link(params)
+    def self.generate_signing_link(params)
       raise ArgumentError, 'Missing params[:id]' if params[:id].nil?
       raise ArgumentError, 'Missing params[:document_id]' if params[:document_id].nil?
+      raise ArgumentError, 'Missing params[:token]' if params[:token].nil?
 
       headers = {
         content_type: :json,
         accept: :json,
-        authorization: "Bearer #{@from_user_token}"
+        authorization: "Bearer #{params[:token]}"
       }
 
       url = "#{SN.Settings.base_url}/v2/documents/#{params[:document_id]}/embedded-invites/#{params[:id]}/link"
       begin
-        response = RestClient.post(url, { auth_method: 'none', link_expiration: nil }.to_json, headers)
+        response = RestClient.post(url, { auth_method: 'none', link_expiration: 45 }.to_json, headers)
         JSON.parse(response.body, object_class: OpenStruct).data.link
       rescue Exception => e
         puts e.inspect
