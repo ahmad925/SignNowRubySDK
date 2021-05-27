@@ -34,17 +34,8 @@ module SN
     # @return [String]
     def to_json
       {
-        id: @id,
-        texts: @texts,
-        signatures: @signatures,
-        checks: @checks,
-        fields: @fields,
-        updated: @updated,
-        requests: @requests,
-        field_invites: @field_invites,
-        roles: @roles,
-        tags: @tags
-      }.reject! { |k, v| v.nil? }.to_json
+        fields: @fields
+      }.reject { |k, v| v.nil? }.to_json
     end
 
 

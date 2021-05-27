@@ -24,7 +24,7 @@ module SN
         event: @event,
         callback_url: @callback_url,
         access_token: @access_token
-      }.reject! { |k, v| v.nil? }.to_json
+      }.reject { |k, v| v.nil? }.to_json
     end
 
     def self.create(attrs)
