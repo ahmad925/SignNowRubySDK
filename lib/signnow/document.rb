@@ -130,6 +130,7 @@ module SN
         docs
       rescue Exception => e
         puts e.inspect
+        puts e.response
         raise e
       end
     end
@@ -152,6 +153,7 @@ module SN
         SN::Document.from_json(response.body)
       rescue Exception => e
         puts e.inspect
+        puts e.response
         raise e
       end
     end
@@ -200,6 +202,7 @@ module SN
         response.body
       rescue Exception => e
         puts e.inspect
+        puts e.response
         nil
       end
     end
@@ -223,6 +226,7 @@ module SN
           true
         rescue Exception => e
           puts e.inspect
+          puts e.response
           false
         end
       end
@@ -239,6 +243,7 @@ module SN
           true
         rescue Exception => e
           puts e.inspect
+          puts e.response
           false
         end
       end

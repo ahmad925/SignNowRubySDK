@@ -28,6 +28,7 @@ module SN
         Token.from_json(response.body)
       rescue Exception => e
         puts e.inspect
+        puts e.response
         false
       end
     end
@@ -53,6 +54,7 @@ module SN
         Token.from_json(response.body)
       rescue Exception => e
         puts e.inspect
+        puts e.response
         raise e
       end
     end
