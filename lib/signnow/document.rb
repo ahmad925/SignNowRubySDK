@@ -201,7 +201,7 @@ module SN
     private
       def create
         validate_new_doc_params!
-        payload = { multipart: true, file: File.new(@filename, 'rb'), Tags: @tags.to_json }
+        payload = { multipart: true, file: File.new(@filename, 'rb'), Tags: @tags.to_json, parse_type: 'tag' }
         headers = { authorization: "Bearer #{@user_token}" }
 
         begin
